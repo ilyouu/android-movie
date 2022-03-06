@@ -1,15 +1,18 @@
 package com.example.movieproject.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.movieproject.MovieDetails;
 import com.example.movieproject.R;
 import com.example.movieproject.model.BannerMovies;
 
@@ -45,11 +48,23 @@ public class BannerMoviesPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.banner_movie_layout, null);
 
-        ImageView bannerImage = view.findViewById(R.id.banner_image);
+        final ImageView bannerImage = view.findViewById(R.id.banner_image);
 
         Glide.with(context).load(bannerMovies.get(position).getImageUrl()).into(bannerImage);
         container.addView(view);
 
+        bannerImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, MovieDetails.class);
+                i.putExtra("movieId", bannerMovies.get(position).getId());
+                i.putExtra("movieName", bannerMovies.get(position).getMovieName());
+                i.putExtra("movieImageUrl", bannerMovies.get(position).getImageUrl());
+                i.putExtra("movieFileUrl", bannerMovies.get(position).getFileUrl());
+
+                context.startActivity(i);
+            }
+        });
         return view;
     }
 }

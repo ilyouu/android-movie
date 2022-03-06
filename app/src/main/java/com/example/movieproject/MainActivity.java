@@ -1,17 +1,21 @@
 package com.example.movieproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toolbar;
 
 import com.example.movieproject.adapter.BannerMoviesPagerAdapter;
 import com.example.movieproject.adapter.MainRecyclerViewAdapter;
 import com.example.movieproject.model.AllCategory;
 import com.example.movieproject.model.BannerMovies;
 import com.example.movieproject.model.CategoryItem;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -28,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     List<BannerMovies> moviesBannerList;
     List<BannerMovies> animeBannerList;
 
+    NestedScrollView nestedScrollView;
+    AppBarLayout appBarLayout;
+
     MainRecyclerViewAdapter mainRecyclerViewAdapter;
     RecyclerView mainRecylerView;
     List<AllCategory> allCategoryList;
@@ -39,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         tabIndicator = findViewById(R.id.tab_indicator);
         categoryTab = findViewById(R.id.tabLayout);
+        nestedScrollView = findViewById(R.id.nestes_scroll);
+        appBarLayout = findViewById(R.id.appbar);
 
         homeBannerList = new ArrayList<>();
         homeBannerList.add(new BannerMovies(1, "sp", "https://popcornreviewss.com/wp-content/uploads/2021/12/Spider-Man-No-Way-Home-SPOILER-REVIEW.jpg", ""));
@@ -63,12 +72,15 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 1:
+                        setScrollDefaultState();
                         setBannerMoviesPagerAdapter(moviesBannerList);
                         break;
                     case 2:
+                        setScrollDefaultState();
                         setBannerMoviesPagerAdapter(animeBannerList);
                         break;
                     default:
+                        setScrollDefaultState();
                         setBannerMoviesPagerAdapter(homeBannerList);
                         break;
                 }
@@ -114,12 +126,22 @@ public class MainActivity extends AppCompatActivity {
         homeCategoryItemList4.add(new CategoryItem(4, "Test 4", "https://popcornreviewss.com/wp-content/uploads/2021/12/Spider-Man-No-Way-Home-SPOILER-REVIEW.jpg", ""));
         homeCategoryItemList4.add(new CategoryItem(5, "Test 5", "https://images.tv9hindi.com/wp-content/uploads/2022/02/Doctor-Strange.jpg", ""));
 
+        List<CategoryItem> homeCategoryItemList5 = new ArrayList<>();
+        homeCategoryItemList5.add(new CategoryItem(1, "Test 1", "https://lh3.googleusercontent.com/pIcG7aNxaKhN6FQtMldPXYi3Dy7uMcPRNTJrOyvOejKtTNTofqaubaObTme3Ok3ZFEIgJyLimZRaH7zWFuYXUQ6dbBrJG8fD0Cl_8VL1ziIH4QPFlC72-G_VYVjKomdRNNaLu273LUl9_JBUcARPbwuj5TZ7cMKr6RLWm0tUN3ajvCC8Mh9DjWFeBzR-244AlV0emCbPgVInBodvS9uluRG_OPWzQQsmvlHLwyPNf2Zuk3lPrjPetlz4MpvjhXDDYQvDKFC2_pqK8_kMdFEfUT5VD-CPKswxNa4cVaWBRahBMZvXLauk1r3t5GKqWgxKBjPes2hPHxnESDT6ODIhofYrM1roi6dlp1vzSROtY6YoRrcqM5Ci-VC0rvy4F0CHyiwTrsAacWGPIbFaW9kaU4UBhYWPTsXgwQEIJCNcXDS9vjblPPjQeyf5Q9R6SZ9G2fwxEX73sc94q0VrdGRqxUu_bmagr_tDQubRp3dLI68gPxrPDkuiqY_bu2veoF1AbYRQOzIlgY8TiZzzdSSu8P6y9mmpZein-QYpOn8VoMkZUJZr3Hak5FCfWVFkCBU1tdSULmjjELiiDoFANQNB195Ni4c4Vdp1iKdYL5EMzoUZCQOHhvdq2Upafl0iDU1i04tL2N8C9WuyUxG-J8mqu2APlUrQxgasS6Hj-2fHc-NcwA7lW18Y8oF9_aBLzPo5YHrI5w8OKI53yjlpQu3snyY=w1137-h635-no?authuser=0", ""));
+        homeCategoryItemList5.add(new CategoryItem(2, "Test 2", "https://lh3.googleusercontent.com/4lJXUw0xBcQYw40Hb2q-4YKK2_315ljoQsLxJEPUPnJoPu-O2QXpXoHeSYpImBWQJjW-kUqC59fCVcqU4U9FPP4lj7nM8Ffe3iMrLBUtS6Z-66n3rUkQrsDZCjGbfbHt4j1R-i567ptQFejtzY7jKm9GyxKCkuswB5iO56y3mSD3H15u7ltiTeJ24FxMzEw54tifvBZ4s5Fiy5CT9HKOVxsx8RsKrwasG0bTv7p8XkiXvSVS2MAPebyhclDoD09kC7ngLUgtxlfa8BsfdvT-HaqeKSLpcLhemxtx2I2ROcFuobrj3fY3EBoT4AgHEvce9UCGCTy25GaJ9HvET38STm9IbQqzCq25eMLHVAbOtR0IT5Cn2kiNx7IRKdPyD0WOlYflP1psIi8ooiy-FngBm-aupeDdn2qoVqtyXEUNOvfhFPbeSUFKAfCqvaHUZE5enwLuihyZDNSvCY-t0YdrgfjWVCuf5xWGzvLdCa6W1AC5YE4ghSXTegqNdq0jyZ2TsEfKnFkH9dTV96QrT1pHV7FwgA_2NECb5mBAy3L50lFvlRPz7r7tReWoEN-I1yqdVOS_zu5IC9DhaoiSQzzRM1GDLarJ25tCav91RSgDrdW658DHbodvac7YpaMPrOm0sa1dCf--ugl5zQKUXtrNIhmmV1mTYy1cs8UabEAntTtGZ_YTkvqPRe95C4XXdOBc0WToRgWo0FPd12SWpSOQxqk=w1285-h635-no?authuser=0", ""));
+        homeCategoryItemList5.add(new CategoryItem(3, "Test 3", "https://images.tv9hindi.com/wp-content/uploads/2022/02/Doctor-Strange.jpg", ""));
+        homeCategoryItemList5.add(new CategoryItem(4, "Test 4", "https://popcornreviewss.com/wp-content/uploads/2021/12/Spider-Man-No-Way-Home-SPOILER-REVIEW.jpg", ""));
+        homeCategoryItemList5.add(new CategoryItem(5, "Test 5", "https://images.tv9hindi.com/wp-content/uploads/2022/02/Doctor-Strange.jpg", ""));
+
 
         allCategoryList = new ArrayList<>();
         allCategoryList.add(new AllCategory(1, "PHIM HOT", homeCategoryItemList1));
         allCategoryList.add(new AllCategory(2, "PHIM CHIẾU RẠP", homeCategoryItemList2));
         allCategoryList.add(new AllCategory(3, "PHIM BỘ MỚI CẬP NHẬT", homeCategoryItemList3));
         allCategoryList.add(new AllCategory(4, "PHIM HOẠT HÌNH", homeCategoryItemList4));
+        allCategoryList.add(new AllCategory(5, "PHIM HOẠT HÌNH CHIẾU RẠP", homeCategoryItemList5));
+        allCategoryList.add(new AllCategory(6, "PHIM HOẠT HÌNH CHIẾU RẠP", homeCategoryItemList5));
+        allCategoryList.add(new AllCategory(7, "PHIM HOẠT HÌNH CHIẾU RẠP", homeCategoryItemList5));
 
         setMainRecylerView(allCategoryList);
 
@@ -162,6 +184,12 @@ public class MainActivity extends AppCompatActivity {
         mainRecylerView.setLayoutManager(layoutManager);
         mainRecyclerViewAdapter = new MainRecyclerViewAdapter(this, allCategoryList);
         mainRecylerView.setAdapter(mainRecyclerViewAdapter);
+    }
+
+    private void setScrollDefaultState(){
+        nestedScrollView.fullScroll(View.FOCUS_UP);
+        nestedScrollView.scrollTo(0, 0);
+        appBarLayout.setExpanded(true);
     }
 
 }

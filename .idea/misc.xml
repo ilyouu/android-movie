@@ -3,10 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TheBang/movie-android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/TheBang/movie-android/app/src/main/res/drawable-v24/unselected.xml" value="0.1" />
+        <entry key="..\:/TheBang/movie-android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/TheBang/movie-android/app/src/main/res/drawable/indicator_selector.xml" value="0.1" />
+        <entry key="..\:/TheBang/movie-android/app/src/main/res/drawable/play_btn_bg.xml" value="0.1" />
         <entry key="..\:/TheBang/movie-android/app/src/main/res/drawable/selected.xml" value="0.1" />
-        <entry key="..\:/TheBang/movie-android/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/TheBang/movie-android/app/src/main/res/layout/activity_main.xml" value="0.1574074074074074" />
+        <entry key="..\:/TheBang/movie-android/app/src/main/res/layout/activity_movie_details.xml" value="0.1" />
+        <entry key="..\:/TheBang/movie-android/app/src/main/res/layout/activity_video_player.xml" value="0.1" />
         <entry key="..\:/TheBang/movie-android/app/src/main/res/layout/banner_movie_layout.xml" value="0.1" />
         <entry key="..\:/TheBang/movie-android/app/src/main/res/layout/category_recyclerview_row_items.xml" value="0.25" />
         <entry key="..\:/TheBang/movie-android/app/src/main/res/layout/category_row_items.xml" value="0.1" />
