@@ -1,9 +1,7 @@
 # movies app android
 
-## Đồ án cơ sở 3
-
-## Dev: Phan Văn Bằng - Trần Nguyễn Vĩnh Uy
+## Dev: Phan Văn Bằng
 ## 2022
 
 ### Start: 6/3/2022
-### End: in progress
+### End: 9/3/2022
