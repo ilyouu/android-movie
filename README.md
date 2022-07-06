@@ -1,7 +1,6 @@
-# movies app android
+## Movies App Android
 
 ## Dev: Phan Văn Bằng
-## 2022
-
-### Start: 6/3/2022
-### End: 9/3/2022
+###### Facebook: fb.com/it0902
+###### Github: github.com/ilyouu
+###### Email: pvbang23092002@gmail.com
