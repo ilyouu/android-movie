@@ -1,5 +1,5 @@
 ## Movies App Android
-```
+```bash
 Project Stoped
 ```
 ## Dev: Phan Văn Bằng
